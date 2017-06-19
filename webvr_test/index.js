@@ -3,7 +3,7 @@ var app = express()
 
 var route = require('./route.js')
 
-app.use(express.static('img'));
+app.use(express.static('static'));
 app.use(express.static('node_modules'));
 
 app.locals.pretty = true
