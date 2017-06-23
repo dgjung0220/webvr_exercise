@@ -1,0 +1,39 @@
+doctype html
+html(lang='en')
+  head
+    title Web VR Node.js
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no')
+    meta(name='mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    link(rel='stylesheet' type='text/css' href='css/vrStyle.css')
+
+  body
+    #ui
+      #vr-button
+      a#magic-window(href='#') Try it without a headset
+      a(href='ovrweb:http://www.naver.com') NAVER
+
+  
+  // User Script.
+  script(src='js/webvr-user.js')
+  
+  //
+    A polyfill for Promises. Needed for IE and Edge.
+  script(src='es6-promise/dist/es6-promise.min.js')
+  //
+    three.js 3d library
+  script(src='three/build/three.min.js')
+  //
+    VRControls.js acquires positional information from connected VR devices and applies the transformations to a three.js camera object.
+  script(src='three/examples/js/controls/VRControls.js')
+  //
+    VREffect.js handles stereo camera setup and rendering.
+  script(src='three/examples/js/effects/VREffect.js')
+  //
+    A polyfill for WebVR using the Device{Motion,Orientation}Event API.
+  script(src='webvr-polyfill/build/webvr-polyfill.js')
+  //
+    A set of UI controls for entering VR mode.
+  script(src='webvr-ui/build/webvr-ui.min.js')
