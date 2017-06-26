@@ -1,6 +1,14 @@
 // more information : https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay
 
-var vrDisplay
+/*******************
+ * THREE.js Objects
+*/
+var scene;
+var renderer;
+var camera;
+
+var vrDisplay;
+var normalSceneFrame;
 var canvas = document.getElementById('canvas');
 
 canvas.width = window.innerWidth;
@@ -53,39 +61,51 @@ function setVRButtonEvent() {
                 canvas.height = Math.max(leftEye.renderheight, rightEye.renderheight) * 2;
                 
                 // stop the normal presentation, and start the vr presentation
-                //window.cancelAnimationFrame(normal)
-
-                drawScene();
+                window.cancelAnimationFrame(normalSceneFrame);
+                drawVRScene();
                 
                 vrButton.textContent = 'Exit VR display'
             })
+        } else {
+            //vrDisplay.exitPresent();
+            console.log('Stopped presenting to WebVR display');
+
+            btn.textContent = 'Start VR display'
         }
 
     })
 }
 
 // draw scene using Three.js
-function drawScene() {
-    
-    var renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    document.body.appendChild(renderer.domElement);
-    
-    scene = new THREE.Scene();
+function drawVRScene() {
+    // Request the next frame of the animation
+    normalSceneFrame = window.requestAnimationFrame(drawScene);
 
     var aspect = window.innerWidth / window.innerHeight;
-    camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
 
-    // Create 3D object
-    var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-    var material = new THREE.MeshNormalMaterial();
-    cube = new THRE.Mesh(geometry, material);
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75,aspect, 0.1 , 1000);
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-    // cube.position.set(0, -1);
+    createObjects();
+    camera.position.z = 5;
+    animate();
+}
+
+function animate() {
+    console.log("animate VR Scene");
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+function createObjects() {
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial({color:0x00ff00});
+    var cube = new THREE.Mesh(geometry, material);
 
     scene.add(cube);
-
 }
 
 // VRDisplay's Property
