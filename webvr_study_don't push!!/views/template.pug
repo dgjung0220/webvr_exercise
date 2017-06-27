@@ -11,15 +11,19 @@ html(lang='en')
 
   body
     #canvas
-    button(type='button' id='VRButton') Start VR display
-  //  #ui
-  //    #vr-button
-  //    a#magic-window(href='#') Try it without a headset
+    #container
+    #info Description
+    //button(type='button' id='VRButton') Start VR display
+    //#ui
+    //  #vr-button
+    //  a#magic-window(href='#') Try it without a headset
 
   
   // User Script.
-  script(src='js/getVRDisplay.js')
-  //script(src='js/createAscene.js')
+  //script(src='js/webvr-user.js')
+  script(src='js/threejs_gettingstarted/Detector.js')
+  script(src='js/threejs_gettingstarted/4.Drawing_lines.js')
+  
   
   //
     A polyfill for Promises. Needed for IE and Edge.

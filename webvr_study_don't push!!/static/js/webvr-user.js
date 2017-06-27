@@ -91,7 +91,7 @@ function onLoad() {
   scene.add(cube);
 
   window.addEventListener('resize', onResize, true);
-  window.addEventListener('vrdisplaypresentchange', onResize, true);
+  //window.addEventListener('vrdisplaypresentchange', onResize, true);
 
   // Initialize the WebVR UI.
   var uiOptions = {
@@ -159,6 +159,7 @@ function animate(timestamp) {
 }
 
 function onResize(e) {
+  console.log('resize');
   effect.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();

@@ -23,3 +23,13 @@ body {
     color: white;
     margin-top:1em;
 }
+
+/*for 5.Creating_text.js */
+#info {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display: block;
+}
